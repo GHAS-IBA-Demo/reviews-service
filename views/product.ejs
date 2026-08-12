@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Product <%= productId %> Reviews</title></head>
+<body>
+  <h1>Reviews for product <%= productId %></h1>
+  <ul>
+    <% reviews.forEach(function(r) { %>
+      <li>
+        <strong><%= r.username %>:</strong>
+        <!-- VULN: raw, unescaped HTML render - stored XSS sink -->
+        <span><%- r.body %></span>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
